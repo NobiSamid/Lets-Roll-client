@@ -1,5 +1,4 @@
 import React from 'react';
-import Products from '../products/Products';
 import Banner from './Banner';
 import Review from './Review';
 

@@ -10,9 +10,11 @@ import { NavLink } from 'react-router-dom';
 import { Menu, MenuItem } from '@mui/material';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
+import useAuth from '../../Hooks/useAuth';
 
 const Navigation = () => {
 
+    const { user, logOut } = useAuth();
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
     console.log(isMobile);
@@ -100,11 +102,13 @@ const Navigation = () => {
                                         Dashboard
                                     </NavLink>
 
-                                    <Button color="inherit">log-out</Button>
-
-                                    <NavLink style={{ textDecoration: "none", color: 'whitesmoke' }} to="/login">
-                                        <Button color="inherit">Log-in</Button>
-                                    </NavLink>
+                                    {
+                                        user.email ? (<Button onClick={logOut} color="inherit">log-out</Button>) : (
+                                            <NavLink style={{ textDecoration: "none", color: 'whitesmoke' }} to="/login">
+                                                <Button color="inherit">Log-in</Button>
+                                            </NavLink>
+                                        )
+                                    }
 
                                 </Box>
                             )}
