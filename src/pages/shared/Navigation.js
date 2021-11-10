@@ -66,23 +66,30 @@ const Navigation = () => {
                                         Home
                                     </NavLink>
                                 </MenuItem>
-                                <MenuItem>
-                                    <NavLink style={{ textDecoration: "none", color: 'black' }} to="/appoinment">
-                                        Appoinment
+                                <MenuItem onClick={handleClose}>
+                                    <NavLink style={{ textDecoration: "none", color: 'black' }} to="/products">
+                                        Products
                                     </NavLink>
                                 </MenuItem>
                                 <MenuItem onClick={handleClose}>
-
-                                    <>
-                                        <NavLink style={{ textDecoration: "none", color: 'black' }} to="/dashboard">
-                                            Dashboard
-                                        </NavLink>
-                                        <Button color="inherit">Log-Out</Button>
-                                    </>
-
-                                    <NavLink style={{ textDecoration: "none", color: 'black' }} to="/login">
-                                        <Button color="inherit">Log-in</Button>
+                                    <NavLink style={{ textDecoration: "none", color: 'black' }} to="/dashboard">
+                                        Dashboard
                                     </NavLink>
+                                </MenuItem>
+                                <MenuItem>
+                                    <Typography>{user?.displayName}</Typography>
+                                </MenuItem>
+                                <MenuItem onClick={handleClose}>
+                                { 
+                                    user.email ?
+                                    (<>
+                                        <Button color="inherit">Log-Out</Button>
+                                    </>)
+                                    :
+                                    (<NavLink style={{ textDecoration: "none", color: 'black' }} to="/login">
+                                        <Button color="inherit">Log-in</Button>
+                                    </NavLink>)
+                                }
 
                                 </MenuItem>
                             </Menu>
@@ -93,14 +100,16 @@ const Navigation = () => {
                                         Home
                                     </NavLink>
 
-                                    <NavLink style={{ textDecoration: "none", color: 'whitesmoke' }} to="/appoinment">
-                                        Appoinment
+                                    <NavLink style={{ textDecoration: "none", color: 'whitesmoke' }} to="/products">
+                                        Products
                                     </NavLink>
 
 
                                     <NavLink style={{ textDecoration: "none", color: 'whitesmoke' }} to="/dashboard">
                                         Dashboard
                                     </NavLink>
+
+                                    <Typography>{user?.displayName}</Typography>
 
                                     {
                                         user.email ? (<Button onClick={logOut} color="inherit">log-out</Button>) : (

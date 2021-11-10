@@ -4,14 +4,17 @@ import { Alert, AlertTitle, Button, Container, LinearProgress, TextField } from 
 import { Grid } from '@mui/material';
 import { Box } from '@mui/system';
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation, useHistory } from 'react-router-dom';
 import useAuth from '../../../Hooks/useAuth';
 
 const Login = () => {
 
     const [loginData, setLoginData] = useState({});
 
-    const { user, loginUser, isLoading, authError, errorCode } = useAuth();
+    const { user, loginUser, signWithGoogle, isLoading, authError, errorCode } = useAuth();
+
+    const location = useLocation();
+    const history = useHistory();
 
     const handleOnBlur = e => {
         const field = e.target.name;
@@ -24,15 +27,20 @@ const Login = () => {
     }
 
     const handleLoginSubmit = e => {
-        loginUser(loginData.email, loginData.password);
+        loginUser(loginData.email, loginData.password, location, history);
         e.preventDefault();
     }
+
+    const handleGoogleSignIn = () =>{
+        signWithGoogle(location, history);
+    }
+
     return (
         <Container>
             <Grid container spacing={2}>
                 <Grid item xs={12} md={6}>ekhane kichu ekta hudai display kora hobe</Grid>
                 <Grid item xs={12} md={6}>
-                    <form onSubmit={handleLoginSubmit}>
+                    <form onSubmit={handleLoginSubmit} style={{borderBottom:"2px solid black", marginBottom:"3px", paddingBottom:"20px"}} >
                         <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
                             <AccountCircle sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
                             <TextField
@@ -73,7 +81,8 @@ const Login = () => {
                             {authError} — <strong>{errorCode}</strong>
                         </Alert>
                         }
-                    </form>
+                    </form><br/>
+                    <Button onClick={handleGoogleSignIn} variant="contained" color="warning">Google sign In</Button>
                 </Grid>
             </Grid>
         </Container>

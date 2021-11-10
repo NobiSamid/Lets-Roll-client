@@ -3,12 +3,15 @@ import VpnKeyRoundedIcon from '@mui/icons-material/VpnKeyRounded';
 import { Alert, AlertTitle, Button, Container, Grid, LinearProgress, TextField } from '@mui/material';
 import { Box } from '@mui/system';
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory, useLocation } from 'react-router-dom';
 import useAuth from '../../../Hooks/useAuth';
 
 const Register = () => {
 
     const [loginData, setLoginData] = useState({});
+
+    const history = useHistory();
+    const location = useLocation();
 
     const { user, registerUser, isLoading, authError, errorCode } = useAuth();
 
@@ -27,7 +30,7 @@ const Register = () => {
             alert("Your password did not mached")
             return
         }
-        registerUser(loginData.email, loginData.password);
+        registerUser(loginData.email, loginData.password, loginData.userName, history);
         e.preventDefault();
     }
     return (
@@ -36,6 +39,18 @@ const Register = () => {
                 <Grid item xs={12} md={6}>ekhane kichu ekta hudai display kora hobe</Grid>
                 <Grid item xs={12} md={6}>
                     {!isLoading && <form onSubmit={handleRegisterSubmit}>
+                        <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
+                            <AccountCircle sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
+                            <TextField
+                                id="input-with-sx"
+                                type="text"
+                                label="User name"
+                                sx={{ width: "75%", m: 1 }}
+                                variant="standard"
+                                name="userName"
+                                onBlur={handleOnBlur}
+                            />
+                        </Box>
                         <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
                             <AccountCircle sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
                             <TextField

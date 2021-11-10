@@ -13,6 +13,7 @@ import Footer from './pages/shared/Footer';
 import Login from './pages/authentication/signUpIn/Login';
 import Register from './pages/authentication/signUpIn/Register';
 import AuthProvider from './context/AuthProvider';
+import PrivateRoute from './pages/authentication/privateroute/PrivateRoute';
 
 function App() {
   return (
@@ -27,9 +28,9 @@ function App() {
             <Route exact path="/products">
               <Products></Products>
             </Route>
-            <Route exact path="/dashboard">
+            <PrivateRoute exact path="/dashboard">
               <Dashboard></Dashboard>
-            </Route>
+            </PrivateRoute>
             <Route exact path="/login">
               <Login></Login>
             </Route>
