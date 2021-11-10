@@ -9,13 +9,11 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import { Button, Grid } from '@mui/material';
+import { Button } from '@mui/material';
 import {
-  BrowserRouter as Router,
   Switch,
   Route,
   Link,
-  useParams,
   useRouteMatch
 } from "react-router-dom";
 import MyOrders from '../myOrders/MyOrders';
@@ -31,9 +29,8 @@ function Dashboard(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
-  // Route match
+  // Route match for nested routing
   let { path, url } = useRouteMatch();
-  console.log(path, url);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);

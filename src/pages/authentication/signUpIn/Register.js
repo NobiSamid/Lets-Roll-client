@@ -3,7 +3,7 @@ import VpnKeyRoundedIcon from '@mui/icons-material/VpnKeyRounded';
 import { Alert, AlertTitle, Button, Container, Grid, LinearProgress, TextField } from '@mui/material';
 import { Box } from '@mui/system';
 import React, { useState } from 'react';
-import { NavLink, useHistory, useLocation } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import useAuth from '../../../Hooks/useAuth';
 
 const Register = () => {
@@ -11,7 +11,6 @@ const Register = () => {
     const [loginData, setLoginData] = useState({});
 
     const history = useHistory();
-    const location = useLocation();
 
     const { user, registerUser, isLoading, authError, errorCode } = useAuth();
 
