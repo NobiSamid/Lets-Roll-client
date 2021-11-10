@@ -1,12 +1,11 @@
 import './App.css';
-import Dashboard from './pages/dashboard/Dashboard';
+import Dashboard from './pages/dashboard/DashboardMain/Dashboard';
 import Home from './pages/home/Home';
 import Products from './pages/products/Products';
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Link
+  Route
 } from "react-router-dom";
 import Navigation from './pages/shared/Navigation';
 import Footer from './pages/shared/Footer';
@@ -14,6 +13,12 @@ import Login from './pages/authentication/signUpIn/Login';
 import Register from './pages/authentication/signUpIn/Register';
 import AuthProvider from './context/AuthProvider';
 import PrivateRoute from './pages/authentication/privateroute/PrivateRoute';
+import MyOrders from './pages/dashboard/myOrders/MyOrders';
+import Review from './pages/home/Review';
+import ManageAllOrders from './pages/dashboard/manageAllOrder/ManageAllOrders';
+import AddProduct from './pages/dashboard/addProduct/AddProduct';
+import ManageProduct from './pages/dashboard/manageProduct/ManageProduct';
+import CreateAdmin from './pages/dashboard/createAdmin/CreateAdmin';
 
 function App() {
   return (
@@ -28,7 +33,7 @@ function App() {
             <Route exact path="/products">
               <Products></Products>
             </Route>
-            <PrivateRoute exact path="/dashboard">
+            <PrivateRoute path="/dashboard">
               <Dashboard></Dashboard>
             </PrivateRoute>
             <Route exact path="/login">
