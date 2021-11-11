@@ -10,6 +10,7 @@ const Review = () => {
     const [review, setReview] = useState(initialInfo);
     const [success, setSuccess] = useState(false);
     const [rate, setRate] = useState(1);
+    console.log(rate);
 
 
     const handleOnBlurR = e => {
@@ -61,6 +62,14 @@ const Review = () => {
                             sx={{ width: "75%", m: 2 }}
                             onBlur={handleOnBlurR}
                         /><br />
+                        <Typography>Rate us</Typography>
+                        <Rating
+                            name="simple-controlled"
+                            value={rate}
+                            onChange={(event, newValue) => {
+                                setRate(newValue);
+                            }}
+                        /><br />
                         <TextField
                             id="standard-basic"
                             label="Subject"
@@ -80,13 +89,7 @@ const Review = () => {
                             sx={{ width: "75%", m: 2 }}
                             onBlur={handleOnBlurR}
                         /><br />
-                        <Rating
-                            name="simple-controlled"
-                            value={rate}
-                            onChange={(event, newValue) => {
-                                setRate(newValue);
-                            }}
-                        />
+                        
                         <Button sx={{ width: 150, m: 2 }} type="submit" variant="contained">Submit</Button>
                     </form>
                     {success && <Alert severity="success">Added the product successfully</Alert>}

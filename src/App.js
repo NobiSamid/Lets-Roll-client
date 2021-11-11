@@ -13,6 +13,7 @@ import Login from './pages/authentication/signUpIn/Login';
 import Register from './pages/authentication/signUpIn/Register';
 import AuthProvider from './context/AuthProvider';
 import PrivateRoute from './pages/authentication/privateroute/PrivateRoute';
+import PlaceOrder from './pages/placeOrder/PlaceOrder';
 
 function App() {
   return (
@@ -27,6 +28,9 @@ function App() {
             <Route exact path="/products">
               <Products></Products>
             </Route>
+            <PrivateRoute path="/products/:pkey">
+              <PlaceOrder></PlaceOrder>
+            </PrivateRoute>
             <PrivateRoute path="/dashboard">
               <Dashboard></Dashboard>
             </PrivateRoute>

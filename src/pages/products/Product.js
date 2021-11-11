@@ -1,10 +1,11 @@
 import { Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Grid, Typography } from '@mui/material';
 import React from 'react';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import { Link } from 'react-router-dom';
 
 
 const Product = (props) => {
-    const { title, info, price, photo } = props.product || {};
+    const { title, info, price, photo, _id } = props.product || {};
     return (
         <Grid sx={{my:3, mx:"auto"}} xs={12} sm={6} md={4}>
             <Card sx={{ maxWidth:"80%", mx:"auto" }}>
@@ -29,9 +30,11 @@ const Product = (props) => {
                     </CardContent>
                 </CardActionArea>
                 <CardActions>
-                    <Button sx={{mx:"auto"}} size="large" variant="outlined" color="success" endIcon={<AddShoppingCartIcon />}>
-                        Purchase
-                    </Button>
+                    <Link to={`/products/${_id}`}>
+                        <Button sx={{mx:"auto"}} size="large" variant="outlined" color="success" endIcon={<AddShoppingCartIcon />}>
+                            Purchase
+                        </Button>
+                    </Link>
                 </CardActions>
             </Card>
         </Grid>
