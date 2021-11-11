@@ -101,7 +101,7 @@ const Navigation = () => {
                                     </NavLink>
 
                                     <NavLink style={{ textDecoration: "none", color: 'whitesmoke' }} to="/products">
-                                        Products
+                                        Explore
                                     </NavLink>
 
 

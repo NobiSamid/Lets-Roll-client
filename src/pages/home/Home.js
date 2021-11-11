@@ -1,13 +1,15 @@
 import React from 'react';
 import Banner from './Banner';
-import Review from './Review';
+import DisplayReview from './DisplayReview';
+import LimitedProducts from './LimitedProducts';
 
 const Home = () => {
     return (
         <div>
             <Banner></Banner>
             <h3>This is home</h3>
-            <Review></Review>
+            <LimitedProducts></LimitedProducts>
+            <DisplayReview></DisplayReview>
         </div>
     );
 };

@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 const Product = (props) => {
     const { title, info, price, photo, _id } = props.product || {};
     return (
-        <Grid sx={{my:3, mx:"auto"}} xs={12} sm={6} md={4}>
+        <Grid item sx={{my:3, mx:"auto"}} xs={12} sm={6} md={4}>
             <Card sx={{ maxWidth:"80%", mx:"auto" }}>
                 <CardActionArea>
                     <CardMedia
