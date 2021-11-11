@@ -19,7 +19,7 @@ const PlaceOrder = () => {
             .then(data => setOrder(data))
     }, [])
 
-    const initialInfoOrder = {user: user.displayName, email: user.email, product: product, price: price, quantity:1}
+    const initialInfoOrder = {quantity:1}
     const [placeOrder, setPlaceOrder] = useState(initialInfoOrder);
     // console.log(placeOrder);
 
@@ -29,12 +29,21 @@ const PlaceOrder = () => {
         const field = e.target.name;
         const value = e.target.value;
         // console.log(field, value);
-        const newOrder = {...placeOrder};
+        const newOrder = {
+            ...placeOrder,
+            user:user.displayName,
+            email:user.email,
+            product:product,
+            price:price,
+        };
         newOrder[field] = value;
         setPlaceOrder(newOrder);
+        console.log(newOrder);
     }
 
     const handleOrderSubmit = e =>{
+
+
         fetch('http://localhost:5000/orders', {
             method:'POST',
             headers:{
@@ -64,7 +73,7 @@ const PlaceOrder = () => {
                 </Grid>
                 <Grid item sm={12} md={6} >
                 <form onSubmit={handleOrderSubmit}>
-                    <TextField
+                    {/* <TextField
                         id="standard-basic"
                         label="User Name"
                         type="text"
@@ -103,12 +112,11 @@ const PlaceOrder = () => {
                         variant="standard"
                         style={{ width: "75%", height:"30px", margin:"10px" }}
                         onBlur={handleOnBlurO}
-                    /><br />
+                    /><br /> */}
                     <TextField
                         id="standard-basic"
                         label="Quantity"
                         type="number"
-                        defaultValue='1'
                         name="quantity"
                         variant="standard"
                         sx={{ width: "75%", m: 2 }}
