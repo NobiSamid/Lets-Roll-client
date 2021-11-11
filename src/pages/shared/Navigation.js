@@ -104,13 +104,13 @@ const Navigation = () => {
                                         Explore
                                     </NavLink>
 
-
-                                    <NavLink style={{ textDecoration: "none", color: 'whitesmoke' }} to="/dashboard">
-                                        Dashboard
-                                    </NavLink>
-
+                                    { user.email &&
+                                        <NavLink style={{ textDecoration: "none", color: 'whitesmoke' }} to="/dashboard">
+                                            Dashboard
+                                        </NavLink>
+                                    } 
                                     <Typography>{user?.displayName}</Typography>
-
+                                          
                                     {
                                         user.email ? (<Button onClick={logOut} color="inherit">log-out</Button>) : (
                                             <NavLink style={{ textDecoration: "none", color: 'whitesmoke' }} to="/login">

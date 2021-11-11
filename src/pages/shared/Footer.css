@@ -1,0 +1,8 @@
+.footer-body{
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-evenly;
+}
+.footer-item{
+    text-align: left;
+}

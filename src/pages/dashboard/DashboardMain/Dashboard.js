@@ -40,15 +40,15 @@ function Dashboard(props) {
     <div>
       <Toolbar />
       <Divider />
-      <Link to="/"><Button color="inherit">Back to Home</Button></Link><br />
-      <Link to={`${url}`}><Button color="inherit">Dashboard</Button></Link><br/>
-      <Link to={`${url}/review`}><Button color="inherit">Review</Button></Link><br />
+      <Link to="/" style={{textDecoration:'none'}} ><Button variant="outlined" style={{margin:"10px"}} color="inherit">Back to Home</Button></Link><br />
+      <Link to={`${url}`} style={{textDecoration:'none'}} ><Button variant="outlined" style={{margin:"10px"}} color="inherit">Dashboard</Button></Link><br/>
+      <Link to={`${url}/review`} style={{textDecoration:'none'}} ><Button variant="outlined" style={{margin:"10px"}} color="inherit">Review</Button></Link><br />
       <Button variant="contained" color="inherit">Log out</Button>
-      <Divider />
-      <Link to={`${url}/manageallorder`}><Button color="inherit">Manage all Order</Button></Link>
-      <Link to={`${url}/addproduct`}><Button color="inherit">Add a product</Button></Link>
-      <Link to={`${url}/manageproducts`}><Button color="inherit">Manage Products</Button></Link>
-      <Link to={`${url}/createadmin`}><Button color="inherit">Create Admin</Button></Link>
+      <Divider style={{margin:"20px"}} />
+      <Link to={`${url}/manageallorder`} style={{textDecoration:'none'}} ><Button variant="outlined" color="inherit">Manage all Order</Button></Link>
+      <Link to={`${url}/addproduct`} style={{textDecoration:'none'}} ><Button variant="outlined" style={{margin:"10px"}} color="inherit">Add a product</Button></Link>
+      <Link to={`${url}/manageproducts`} style={{textDecoration:'none'}} ><Button variant="outlined" style={{margin:"10px"}} color="inherit">Manage Products</Button></Link>
+      <Link to={`${url}/createadmin`} style={{textDecoration:'none'}}><Button variant="outlined"  color="inherit">Create Admin</Button></Link>
     </div>
   );
 
