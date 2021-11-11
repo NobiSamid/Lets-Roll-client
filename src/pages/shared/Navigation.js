@@ -32,7 +32,7 @@ const Navigation = () => {
             <AppBar position="static">
                 <Toolbar>
                     <Typography variant="h6" component="div" style={{ flex: 1, textAlign: "left" }}>
-                        Doc
+                        Let's Roll
                     </Typography>
                     <Box style={{ width: "40%" }}>
                         {isMobile ? (<>
@@ -80,16 +80,16 @@ const Navigation = () => {
                                     <Typography>{user?.displayName}</Typography>
                                 </MenuItem>
                                 <MenuItem onClick={handleClose}>
-                                { 
-                                    user.email ?
-                                    (<>
-                                        <Button color="inherit">Log-Out</Button>
-                                    </>)
-                                    :
-                                    (<NavLink style={{ textDecoration: "none", color: 'black' }} to="/login">
-                                        <Button color="inherit">Log-in</Button>
-                                    </NavLink>)
-                                }
+                                    {
+                                        user.email ?
+                                            (<>
+                                                <Button color="inherit">Log-Out</Button>
+                                            </>)
+                                            :
+                                            (<NavLink style={{ textDecoration: "none", color: 'black' }} to="/login">
+                                                <Button color="inherit">Log-in</Button>
+                                            </NavLink>)
+                                    }
 
                                 </MenuItem>
                             </Menu>
@@ -104,13 +104,13 @@ const Navigation = () => {
                                         Explore
                                     </NavLink>
 
-                                    { user.email &&
+                                    {user.email &&
                                         <NavLink style={{ textDecoration: "none", color: 'whitesmoke' }} to="/dashboard">
                                             Dashboard
                                         </NavLink>
-                                    } 
+                                    }
                                     <Typography>{user?.displayName}</Typography>
-                                          
+
                                     {
                                         user.email ? (<Button onClick={logOut} color="inherit">log-out</Button>) : (
                                             <NavLink style={{ textDecoration: "none", color: 'whitesmoke' }} to="/login">

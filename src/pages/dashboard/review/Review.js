@@ -64,8 +64,10 @@ const Review = () => {
                         /><br />
                         <Typography>Rate us</Typography>
                         <Rating
-                            name="simple-controlled"
+                            name="half-rating"
+                            size="large"
                             value={rate}
+                            precision={0.5}
                             onChange={(event, newValue) => {
                                 setRate(newValue);
                             }}

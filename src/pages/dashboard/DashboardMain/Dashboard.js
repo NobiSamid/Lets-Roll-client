@@ -33,7 +33,7 @@ function Dashboard(props) {
 
   // Route match for nested routing
   let { path, url } = useRouteMatch();
-  const { admin } = useAuth();
+  const { admin, logOut } = useAuth();
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -46,7 +46,7 @@ function Dashboard(props) {
       <Link to="/" style={{ textDecoration: 'none' }} ><Button variant="outlined" style={{ margin: "10px" }} color="inherit">Back to Home</Button></Link><br />
       <Link to={`${url}`} style={{ textDecoration: 'none' }} ><Button variant="outlined" style={{ margin: "10px" }} color="inherit">Dashboard</Button></Link><br />
       <Link to={`${url}/review`} style={{ textDecoration: 'none' }} ><Button variant="outlined" style={{ margin: "10px" }} color="inherit">Review</Button></Link><br />
-      <Button variant="contained" color="inherit">Log out</Button>
+      <Button variant="contained" onClick={logOut} color="inherit">Log out</Button>
       <Divider style={{ margin: "20px" }} />
       {admin && <Box>
         <Link to={`${url}/manageallorder`} style={{ textDecoration: 'none' }} ><Button variant="outlined" color="inherit">Manage all Order</Button></Link>
