@@ -11,6 +11,7 @@ const useFirebase = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [authError, setAuthError] = useState('');
     const [errorCode, setErrorCode] = useState('');
+    const [admin, setAdmin] = useState(false);
 
 
     const auth = getAuth();
@@ -26,6 +27,8 @@ const useFirebase = () => {
                 const newUser = { email, displayName: name};
                 setUser(newUser);
 
+                // save user to the database
+                saveUser(email, name, 'POST');
                 // send name to fire base after creation
                 updateProfile(auth.currentUser, {
                     displayName: name
@@ -67,8 +70,11 @@ const useFirebase = () => {
         signInWithPopup(auth, googleProvider)
             .then((result) => {
                 const user = result.user;
+                saveUser(user.email, user.displayName, 'PUT')
                 setAuthError('');
                 setErrorCode('');
+                const destination = location?.state?.from || '/';
+                history.replace(destination);
             }).catch((error) => {
                 setErrorCode(error.code);
                 setAuthError(error.message);
@@ -89,6 +95,13 @@ const useFirebase = () => {
         return () => unsubscribe;
     }, [])
 
+    // check Admin or not
+    useEffect(()=>{
+        fetch(`http://localhost:5000/users/${user.email}`)
+        .then(res => res.json())
+        .then(data => setAdmin(data.admin))
+    },[user.email])
+
     const logOut = () => {
         setIsLoading(true);
         signOut(auth)
@@ -101,8 +114,22 @@ const useFirebase = () => {
 
     }
 
+    // save user
+    const saveUser = (email, displayName, method) =>{
+        const user = {email, displayName};
+        fetch('http://localhost:5000/users', {
+            method:method,
+            headers:{
+                'content-type':'application/json'
+            },
+            body:JSON.stringify(user)
+        })
+        .then()
+    }
+
     return {
         user,
+        admin,
         isLoading,
         registerUser,
         loginUser,

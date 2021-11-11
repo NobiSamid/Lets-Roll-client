@@ -22,6 +22,8 @@ import Review from '../review/Review';
 import ManageAllOrders from '../manageAllOrder/ManageAllOrders';
 import AddProduct from '../addProduct/AddProduct';
 import ManageProduct from '../manageProduct/ManageProduct';
+import useAuth from '../../../Hooks/useAuth';
+import AdminRoute from '../../authentication/adminRoute/AdminRoute';
 
 const drawerWidth = 220;
 
@@ -31,6 +33,7 @@ function Dashboard(props) {
 
   // Route match for nested routing
   let { path, url } = useRouteMatch();
+  const { admin } = useAuth();
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -40,15 +43,17 @@ function Dashboard(props) {
     <div>
       <Toolbar />
       <Divider />
-      <Link to="/" style={{textDecoration:'none'}} ><Button variant="outlined" style={{margin:"10px"}} color="inherit">Back to Home</Button></Link><br />
-      <Link to={`${url}`} style={{textDecoration:'none'}} ><Button variant="outlined" style={{margin:"10px"}} color="inherit">Dashboard</Button></Link><br/>
-      <Link to={`${url}/review`} style={{textDecoration:'none'}} ><Button variant="outlined" style={{margin:"10px"}} color="inherit">Review</Button></Link><br />
+      <Link to="/" style={{ textDecoration: 'none' }} ><Button variant="outlined" style={{ margin: "10px" }} color="inherit">Back to Home</Button></Link><br />
+      <Link to={`${url}`} style={{ textDecoration: 'none' }} ><Button variant="outlined" style={{ margin: "10px" }} color="inherit">Dashboard</Button></Link><br />
+      <Link to={`${url}/review`} style={{ textDecoration: 'none' }} ><Button variant="outlined" style={{ margin: "10px" }} color="inherit">Review</Button></Link><br />
       <Button variant="contained" color="inherit">Log out</Button>
-      <Divider style={{margin:"20px"}} />
-      <Link to={`${url}/manageallorder`} style={{textDecoration:'none'}} ><Button variant="outlined" color="inherit">Manage all Order</Button></Link>
-      <Link to={`${url}/addproduct`} style={{textDecoration:'none'}} ><Button variant="outlined" style={{margin:"10px"}} color="inherit">Add a product</Button></Link>
-      <Link to={`${url}/manageproducts`} style={{textDecoration:'none'}} ><Button variant="outlined" style={{margin:"10px"}} color="inherit">Manage Products</Button></Link>
-      <Link to={`${url}/createadmin`} style={{textDecoration:'none'}}><Button variant="outlined"  color="inherit">Create Admin</Button></Link>
+      <Divider style={{ margin: "20px" }} />
+      {admin && <Box>
+        <Link to={`${url}/manageallorder`} style={{ textDecoration: 'none' }} ><Button variant="outlined" color="inherit">Manage all Order</Button></Link>
+        <Link to={`${url}/addproduct`} style={{ textDecoration: 'none' }} ><Button variant="outlined" style={{ margin: "10px" }} color="inherit">Add a product</Button></Link>
+        <Link to={`${url}/manageproducts`} style={{ textDecoration: 'none' }} ><Button variant="outlined" style={{ margin: "10px" }} color="inherit">Manage Products</Button></Link>
+        <Link to={`${url}/createadmin`} style={{ textDecoration: 'none' }}><Button variant="outlined" color="inherit">Create Admin</Button></Link>
+      </Box>}
     </div>
   );
 
@@ -124,18 +129,18 @@ function Dashboard(props) {
           <Route path={`${path}/review`}>
             <Review></Review>
           </Route>
-          <Route path={`${path}/manageallorder`}>
+          <AdminRoute path={`${path}/manageallorder`}>
             <ManageAllOrders></ManageAllOrders>
-          </Route>
-          <Route path={`${path}/addproduct`}>
+          </AdminRoute>
+          <AdminRoute path={`${path}/addproduct`}>
             <AddProduct></AddProduct>
-          </Route>
-          <Route path={`${path}/manageproducts`}>
+          </AdminRoute>
+          <AdminRoute path={`${path}/manageproducts`}>
             <ManageProduct></ManageProduct>
-          </Route>
-          <Route path={`${path}/createadmin`}>
+          </AdminRoute>
+          <AdminRoute path={`${path}/createadmin`}>
             <CreateAdmin></CreateAdmin>
-          </Route>
+          </AdminRoute>
         </Switch>
 
       </Box>
