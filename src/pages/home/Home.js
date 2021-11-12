@@ -1,10 +1,9 @@
 import { Accordion, AccordionDetails, AccordionSummary, Typography } from '@mui/material';
 import React from 'react';
-import Banner from './Banner';
 import DisplayReview from './DisplayReview';
 import LimitedProducts from './LimitedProducts';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import Try from './Try';
+import Banner from './banner/Banner';
 
 
 const Home = () => {
@@ -72,7 +71,6 @@ const Home = () => {
                 </Accordion>
             </div><br /><br /><br />
             <DisplayReview></DisplayReview>
-            <Try></Try>
         </div>
     );
 };

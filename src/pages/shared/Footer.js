@@ -3,7 +3,7 @@ import './Footer.css'
 
 const Footer = () => {
     return (
-        <div>
+        <div className="footer-part">
             <div className="footer-body">
                 <div className="footer-item">
                     <h1>Let's Roll</h1>
@@ -21,8 +21,9 @@ const Footer = () => {
                 </div>
                 <div><h2>Pament methods</h2></div>
             </div>
-            <h3>Copyright © Khoundokar Sami un nobi Samid</h3>
+            <h3 className="copy-right">Copyright © Khoundokar Sami un nobi Samid</h3>
         </div>
+
     );
 };
 

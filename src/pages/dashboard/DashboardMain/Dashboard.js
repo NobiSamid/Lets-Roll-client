@@ -43,7 +43,7 @@ function Dashboard(props) {
   const drawer = (
     <div>
       <Toolbar />
-      <Divider />
+      <Toolbar />
       <Link to="/" style={{ textDecoration: 'none' }} ><Button variant="outlined" style={{ margin: "10px" }} color="inherit">Back to Home</Button></Link><br />
       <Link to={`${url}`} style={{ textDecoration: 'none' }} ><Button variant="outlined" style={{ margin: "10px" }} color="inherit">Dashboard</Button></Link><br />
       <Link to={`${url}/review`} style={{ textDecoration: 'none' }} ><Button variant="outlined" style={{ margin: "10px" }} color="inherit">Review</Button></Link><br />
