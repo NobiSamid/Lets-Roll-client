@@ -1,6 +1,6 @@
 import { AccountCircle } from '@mui/icons-material';
 import VpnKeyRoundedIcon from '@mui/icons-material/VpnKeyRounded';
-import { Alert, AlertTitle, Button, Container, LinearProgress, TextField } from '@mui/material';
+import { Alert, AlertTitle, Button, Container, LinearProgress, TextField, Typography } from '@mui/material';
 import { Grid } from '@mui/material';
 import { Box } from '@mui/system';
 import React, { useState } from 'react';
@@ -36,10 +36,12 @@ const Login = () => {
     }
 
     return (
-        <Container>
+        <Container sx={{height:"50vh"}}>
             <Grid container spacing={2}>
-                <Grid item xs={12} md={6}>ekhane kichu ekta hudai display kora hobe</Grid>
-                <Grid item xs={12} md={6}>
+                <Grid sx={{my:"auto", pr:8}} item xs={12} md={6}>
+                    <Typography sx={{fontSize:'2rem', fontWeight:'500'}}>Please Log in to purchase and experience many more features</Typography>
+                </Grid>
+                <Grid sx={{mt:8}} item xs={12} md={6}>
                     <form onSubmit={handleLoginSubmit} style={{borderBottom:"2px solid black", marginBottom:"3px", paddingBottom:"20px"}} >
                         <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
                             <AccountCircle sx={{ color: 'action.active', mr: 1, my: 0.5 }} />

@@ -2,8 +2,8 @@ import React from 'react';
 
 const Payment = () => {
     return (
-        <div>
-            <h3>Payment method comming soon</h3>
+        <div style={{height:'50vh'}}>
+            <h3 style={{fontSize:"5rem", fontWeight:"600", margin:"auto"}}>Payment method comming soon</h3>
         </div>
     );
 };

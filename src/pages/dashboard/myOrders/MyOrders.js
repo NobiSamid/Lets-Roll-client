@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import useAuth from '../../../Hooks/useAuth';
-import { Button, CircularProgress, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
+import { Button, CircularProgress, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
 import Paper from '@mui/material/Paper';
+import { typography } from '@mui/system';
 
 
 const MyOrders = () => {
@@ -40,7 +41,7 @@ const MyOrders = () => {
     }
     return (
         <div>
-            <h3>client's order and he or she can delete the order main page of dash board</h3>
+            <Typography sx={{fontSize:"3rem", fontWeight:"600"}}>Product that you have orderd</Typography>
             { myOrders.length === 0 ? <CircularProgress style={{marginTop:"100px", marginBottom:"100px"}} /> : <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
                     <TableHead>

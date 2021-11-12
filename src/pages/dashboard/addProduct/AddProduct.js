@@ -1,4 +1,4 @@
-import { Alert, Button, Container, Grid, InputAdornment, TextField, Typography } from '@mui/material';
+import { Alert, Button, Container, Divider, Grid, InputAdornment, TextField, Typography } from '@mui/material';
 import React, { useState } from 'react';
 import useAuth from '../../../Hooks/useAuth';
 
@@ -39,9 +39,11 @@ const AddProduct = () => {
     return (
         <Container>
             <Grid container spacing={2}>
-                <Grid item sm={12} md={6}>
-                    <Typography>{user?.displayName}</Typography>
-                    <Typography>{user?.email}</Typography>
+                <Grid sx={{my:"auto"}} item sm={12} md={6}>
+                    <Typography sx={{fontSize:"2rem", fontWeight:"600"}}>{user?.displayName}</Typography>
+                    <Divider />
+                    <Typography sx={{fontSize:"2rem", fontWeight:"500"}}>Add new product to the shop</Typography>
+                    <Typography sx={{fontSize:"1rem", fontWeight:"500"}}>Please make sure you've inserted correct data of product and valid image url</Typography>
                 </Grid>
                 <Grid item sm={12} md={6}>
                     <form onSubmit={handleProductSubmit}>

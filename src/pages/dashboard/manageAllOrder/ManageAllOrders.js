@@ -76,7 +76,7 @@ const ManageAllOrders = () => {
 
     return (
         <div>
-            <h3>Manage all orders here like order shipping or pending</h3>
+            <h2>Manage all ordered products</h2>
            { allOrders.length === 0 ? <CircularProgress style={{marginTop:"100px", marginBottom:"100px"}} /> : <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
                     <TableHead>

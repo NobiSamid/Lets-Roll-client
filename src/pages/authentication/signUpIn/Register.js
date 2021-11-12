@@ -1,6 +1,6 @@
 import { AccountCircle } from '@mui/icons-material';
 import VpnKeyRoundedIcon from '@mui/icons-material/VpnKeyRounded';
-import { Alert, AlertTitle, Button, Container, Grid, LinearProgress, TextField } from '@mui/material';
+import { Alert, AlertTitle, Button, Container, Grid, LinearProgress, TextField, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import React, { useState } from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
@@ -33,10 +33,12 @@ const Register = () => {
         e.preventDefault();
     }
     return (
-        <Container>
+        <Container sx={{ height: "50vh" }}>
             <Grid container spacing={2}>
-                <Grid item xs={12} md={6}>ekhane kichu ekta hudai display kora hobe</Grid>
-                <Grid item xs={12} md={6}>
+                <Grid sx={{my:"auto"}} item xs={12} md={6}>
+                    <Typography sx={{ fontSize: '2rem', fontWeight: '500' }}>Please Log in to purchase and experience many more features</Typography>
+                </Grid>
+                <Grid sx={{my:"auto", mt:8}} item xs={12} md={6}>
                     {!isLoading && <form onSubmit={handleRegisterSubmit}>
                         <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
                             <AccountCircle sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
@@ -95,13 +97,13 @@ const Register = () => {
                     {user?.email &&
                         <Alert severity="success">
                             <AlertTitle>Success</AlertTitle>
-                                User Registered successfully — <strong>Congratulations!</strong>
+                            User Registered successfully — <strong>Congratulations!</strong>
                         </Alert>
                     }
                     {authError && <Alert severity="error">
                         <AlertTitle>Error</AlertTitle>
-                            {authError} — <strong>{errorCode}</strong>
-                        </Alert>
+                        {authError} — <strong>{errorCode}</strong>
+                    </Alert>
                     }
 
                 </Grid>

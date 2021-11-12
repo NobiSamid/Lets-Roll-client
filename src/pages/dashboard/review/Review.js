@@ -1,4 +1,4 @@
-import { Alert, Button, Container, Grid, Rating, TextField, Typography } from '@mui/material';
+import { Alert, Button, Container, Divider, Grid, Rating, TextField, Typography } from '@mui/material';
 import React, { useState } from 'react';
 import useAuth from '../../../Hooks/useAuth';
 
@@ -48,8 +48,10 @@ const Review = () => {
         <Container>
             <Grid container spacing={2}>
                 <Grid item sm={12} md={6}>
-                    <Typography>{user?.displayName}</Typography>
-                    <Typography>{user?.email}</Typography>
+                    <Typography sx={{fontSize:"2rem", fontWeight:"600"}}>{user?.displayName}</Typography>
+                    <Typography sx={{fontSize:"2rem", fontWeight:"600"}}>{user?.email}</Typography>
+                    <Divider />
+                    <Typography sx={{fontSize:"1.5rem", fontWeight:"500"}}>Please let us know about your experience. We value our every single customer. Don't have a good day , Have a greate day</Typography>
                 </Grid>
                 <Grid item sm={12} md={6}>
                     <form onSubmit={handleReviewSubmit}>

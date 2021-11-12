@@ -17,10 +17,20 @@ section .content{
 section .content h2{
     font-size: 3em;
     color: #fff;
+    text-align: left;
+    
 }
 section .content p{
     font-size: 1.2em;
     color: #fff;
+    text-align: left;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.027), rgba(255, 255, 255, 0));
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, o.18);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    padding: 20px;
+    border-radius: 20px;
 }
 section img{
     position: relative;
