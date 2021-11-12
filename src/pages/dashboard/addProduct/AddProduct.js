@@ -18,7 +18,8 @@ const AddProduct = () => {
         console.log(productData);
     }
     const handleProductSubmit = e => {
-        fetch('http://localhost:5000/products',{
+        // fetch('http://localhost:5000/products',{
+        fetch('https://aqueous-mountain-11815.herokuapp.com/products',{
             method: 'POST',
             headers:{
                 'content-type':'application/json'

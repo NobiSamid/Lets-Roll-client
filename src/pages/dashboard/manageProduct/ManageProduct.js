@@ -7,7 +7,8 @@ const ManageProduct = () => {
     const [allProducts, setAllProducts] = useState([]);
 
     useEffect(()=>{
-        fetch("http://localhost:5000/products")
+        // fetch("http://localhost:5000/products")
+        fetch("https://aqueous-mountain-11815.herokuapp.com/products")
         .then(res=>res.json())
         .then(data=>setAllProducts(data))
     },[]);
@@ -18,7 +19,8 @@ const ManageProduct = () => {
         const proceed = window.confirm('Are you sure, you want to delete this Product ?????');
         if(proceed){
             console.log('delete kore dei eta?', id);
-            const url = `http://localhost:5000/products/${id}`;
+            // const url = `http://localhost:5000/products/${id}`;
+            const url = `https://aqueous-mountain-11815.herokuapp.com/products/${id}`;
             fetch(url, {
                 method: 'DELETE'
             })

@@ -8,7 +8,8 @@ const LimitedProducts = () => {
     const [limitedProducts, setLimitedProducts] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/limitedproduct')
+        // fetch('http://localhost:5000/limitedproduct')
+        fetch('https://aqueous-mountain-11815.herokuapp.com/limitedproduct')
             .then(res => res.json())
             .then(data => setLimitedProducts(data))
     }, [])

@@ -24,6 +24,7 @@ import AddProduct from '../addProduct/AddProduct';
 import ManageProduct from '../manageProduct/ManageProduct';
 import useAuth from '../../../Hooks/useAuth';
 import AdminRoute from '../../authentication/adminRoute/AdminRoute';
+import Payment from '../pament/Payment';
 
 const drawerWidth = 220;
 
@@ -46,6 +47,7 @@ function Dashboard(props) {
       <Link to="/" style={{ textDecoration: 'none' }} ><Button variant="outlined" style={{ margin: "10px" }} color="inherit">Back to Home</Button></Link><br />
       <Link to={`${url}`} style={{ textDecoration: 'none' }} ><Button variant="outlined" style={{ margin: "10px" }} color="inherit">Dashboard</Button></Link><br />
       <Link to={`${url}/review`} style={{ textDecoration: 'none' }} ><Button variant="outlined" style={{ margin: "10px" }} color="inherit">Review</Button></Link><br />
+      <Link to={`${url}/payment`} style={{ textDecoration: 'none' }} ><Button variant="outlined" style={{ margin: "10px" }} color="inherit">Payment</Button></Link><br />
       <Button variant="contained" onClick={logOut} color="inherit">Log out</Button>
       <Divider style={{ margin: "20px" }} />
       {admin && <Box>
@@ -128,6 +130,9 @@ function Dashboard(props) {
           </Route>
           <Route path={`${path}/review`}>
             <Review></Review>
+          </Route>
+          <Route path={`${path}/payment`}>
+            <Payment></Payment>
           </Route>
           <AdminRoute path={`${path}/manageallorder`}>
             <ManageAllOrders></ManageAllOrders>

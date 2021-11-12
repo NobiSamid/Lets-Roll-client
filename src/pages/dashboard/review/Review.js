@@ -25,7 +25,8 @@ const Review = () => {
     }
 
     const handleReviewSubmit = e => {
-        fetch('http://localhost:5000/reviews',{
+        // fetch('http://localhost:5000/reviews',{
+        fetch('https://aqueous-mountain-11815.herokuapp.com/reviews',{
             method: 'POST',
             headers:{
                 'content-type':'application/json'

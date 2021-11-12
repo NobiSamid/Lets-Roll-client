@@ -14,7 +14,8 @@ const PlaceOrder = () => {
     // console.log(product, price);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/products/${pkey}`)
+        // fetch(`http://localhost:5000/products/${pkey}`)
+        fetch(`https://aqueous-mountain-11815.herokuapp.com/products/${pkey}`)
             .then(res => res.json())
             .then(data => setOrder(data))
     }, [])
@@ -44,7 +45,8 @@ const PlaceOrder = () => {
     const handleOrderSubmit = e =>{
 
 
-        fetch('http://localhost:5000/orders', {
+        // fetch('http://localhost:5000/orders', {
+        fetch('https://aqueous-mountain-11815.herokuapp.com/orders', {
             method:'POST',
             headers:{
                 'content-type':'application/json'
