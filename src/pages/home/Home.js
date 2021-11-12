@@ -10,7 +10,6 @@ const Home = () => {
     return (
         <div>
             <Banner></Banner>
-            <h3>This is home</h3>
             <LimitedProducts></LimitedProducts>
             <div style={{width:"60%", margin:"auto"}}>
                 <Accordion>

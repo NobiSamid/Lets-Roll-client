@@ -39,7 +39,7 @@ const PlaceOrder = () => {
         };
         newOrder[field] = value;
         setPlaceOrder(newOrder);
-        console.log(newOrder);
+        // console.log(newOrder);
     }
 
     const handleOrderSubmit = e =>{
@@ -75,27 +75,25 @@ const PlaceOrder = () => {
                 </Grid>
                 <Grid item sm={12} md={6} >
                 <form onSubmit={handleOrderSubmit}>
-                    {/* <TextField
+                    <TextField
                         id="standard-basic"
-                        label="User Name"
+                        label="Address"
                         type="text"
-                        defaultValue={user.displayName}
-                        name="user"
+                        name="address"
                         variant="standard"
                         sx={{ width: "75%", m: 2 }}
                         onBlur={handleOnBlurO}
                     /><br />
-                    <input
+                    <TextField
                         id="standard-basic"
-                        label="Email"
-                        type="email"
-                        value={user.email}
-                        name="email"
+                        label="Phone Number"
+                        type="number"
+                        name="phone"
                         variant="standard"
-                        style={{ width: "75%", margin: "10px",height:"30px" }}
+                        sx={{ width: "75%", m: 2 }}
                         onBlur={handleOnBlurO}
                     /><br />
-                    <input
+                    {/* <input
                         id="standard-basic"
                         label="Product"
                         type="text"
