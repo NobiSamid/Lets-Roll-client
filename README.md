@@ -1,6 +1,6 @@
 # Let's Roll
 
-Live site Link [Let's Roll](https://github.com/facebook/create-react-app).
+Live site Link [Let's Roll](https://lets-roll-6336f.web.app/).
 
 ## About Let's Roll
 
@@ -11,3 +11,8 @@ Live site Link [Let's Roll](https://github.com/facebook/create-react-app).
 => Admin user can add new Product to the shop. \
 => Admin can remove products from shop. \
 => Admin can make any user admin.
+
+## Bugs
+=>every Status radio option changes on single option change `but` it `works properly` on Backend server
+=>After update status reload require.
+=>On reload dashboard redirect to the home 
