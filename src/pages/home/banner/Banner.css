@@ -44,3 +44,10 @@ section img{
     bottom: 0;
     left: 0;
 }
+
+@media only screen and (max-width:688px) {
+    section img{
+        display: none;
+    }
+}
+

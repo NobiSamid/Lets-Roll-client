@@ -30,7 +30,7 @@ const Product = (props) => {
                     </CardContent>
                 </CardActionArea>
                 <CardActions>
-                    <Link to={`/products/${_id}`}>
+                    <Link style={{textDecoration:"none", margin:"auto"}} to={`/products/${_id}`}>
                         <Button sx={{mx:"auto"}} size="large" variant="outlined" color="success" endIcon={<AddShoppingCartIcon />}>
                             Purchase
                         </Button>

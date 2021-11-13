@@ -44,17 +44,17 @@ function Dashboard(props) {
     <div>
       <Toolbar />
       <Toolbar />
-      <Link to="/" style={{ textDecoration: 'none' }} ><Button variant="outlined" style={{ margin: "10px" }} color="inherit">Back to Home</Button></Link><br />
-      <Link to={`${url}`} style={{ textDecoration: 'none' }} ><Button variant="outlined" style={{ margin: "10px" }} color="inherit">Dashboard</Button></Link><br />
-      <Link to={`${url}/review`} style={{ textDecoration: 'none' }} ><Button variant="outlined" style={{ margin: "10px" }} color="inherit">Review</Button></Link><br />
-      <Link to={`${url}/payment`} style={{ textDecoration: 'none' }} ><Button variant="outlined" style={{ margin: "10px" }} color="inherit">Payment</Button></Link><br />
+      <Link to="/" style={{ textDecoration: 'none' }} ><Button variant="outlined" style={{ margin: "10px" }} color="secondary">Back to Home</Button></Link><br />
+      <Link to={`${url}`} style={{ textDecoration: 'none' }} ><Button variant="outlined" style={{ margin: "10px" }} color="secondary">Dashboard</Button></Link><br />
+      <Link style={{textDecoration:"none"}} to={`${url}/review`} ><Button variant="outlined" style={{ margin: "10px" }} color="secondary">Review</Button></Link><br />
+      <Link to={`${url}/payment`} style={{ textDecoration: 'none' }} ><Button variant="outlined" style={{ margin: "10px" }} color="secondary">Payment</Button></Link><br />
       <Button variant="contained" onClick={logOut} color="inherit">Log out</Button>
       <Divider style={{ margin: "20px" }} />
       {admin && <Box>
-        <Link to={`${url}/manageallorder`} style={{ textDecoration: 'none' }} ><Button variant="outlined" color="inherit">Manage all Order</Button></Link>
-        <Link to={`${url}/addproduct`} style={{ textDecoration: 'none' }} ><Button variant="outlined" style={{ margin: "10px" }} color="inherit">Add a product</Button></Link>
-        <Link to={`${url}/manageproducts`} style={{ textDecoration: 'none' }} ><Button variant="outlined" style={{ margin: "10px" }} color="inherit">Manage Products</Button></Link>
-        <Link to={`${url}/createadmin`} style={{ textDecoration: 'none' }}><Button variant="outlined" color="inherit">Create Admin</Button></Link>
+        <Link to={`${url}/manageallorder`} style={{ textDecoration: 'none' }} ><Button variant="outlined" color="secondary">Manage all Order</Button></Link>
+        <Link to={`${url}/addproduct`} style={{ textDecoration: 'none' }} ><Button variant="outlined" style={{ margin: "10px" }} color="secondary">Add a product</Button></Link>
+        <Link to={`${url}/manageproducts`} style={{ textDecoration: 'none' }} ><Button variant="outlined" style={{ margin: "10px" }} color="secondary">Manage Products</Button></Link>
+        <Link to={`${url}/createadmin`} style={{ textDecoration: 'none' }}><Button variant="outlined" color="secondary">Create Admin</Button></Link>
       </Box>}
     </div>
   );

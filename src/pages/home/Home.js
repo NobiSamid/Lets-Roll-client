@@ -4,6 +4,7 @@ import DisplayReview from './DisplayReview';
 import LimitedProducts from './LimitedProducts';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Banner from './banner/Banner';
+import Footer from '../shared/Footer';
 
 
 const Home = () => {

@@ -42,8 +42,8 @@ const MyOrders = () => {
     return (
         <div>
             <Typography sx={{fontSize:"3rem", fontWeight:"600"}}>Product that you have orderd</Typography>
-            { myOrders.length === 0 ? <CircularProgress style={{marginTop:"100px", marginBottom:"100px"}} /> : <TableContainer component={Paper}>
-                <Table sx={{ minWidth: 650 }} aria-label="simple table">
+            { myOrders.length === 0 ? <CircularProgress style={{marginTop:"100px", marginBottom:"100px"}} /> : <TableContainer sx={{width:"80%", mx:'auto'}} component={Paper}>
+                <Table sx={{ minWidth: '50%' }} aria-label="simple table">
                     <TableHead>
                         <TableRow>
                             <TableCell>Product</TableCell>

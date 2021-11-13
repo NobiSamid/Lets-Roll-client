@@ -39,8 +39,8 @@ const ManageProduct = () => {
     return (
         <div>
             <Typography sx={{fontSize:"3rem", fontWeight:"600"}}>Products of store</Typography>
-            { allProducts.length === 0 ? <CircularProgress style={{marginTop:"100px", marginBottom:"100px"}} /> : <TableContainer component={Paper}>
-                <Table sx={{ minWidth: 650 }} aria-label="simple table">
+            { allProducts.length === 0 ? <CircularProgress style={{marginTop:"100px", marginBottom:"100px"}} /> : <TableContainer sx={{width:"80%", mx:'auto'}} component={Paper}>
+                <Table sx={{ minWidth: '50%' }} aria-label="simple table">
                     <TableHead>
                         <TableRow>
                             <TableCell>Product</TableCell>
@@ -59,7 +59,7 @@ const ManageProduct = () => {
                                 <TableCell component="th" scope="row">
                                     {row.title}
                                 </TableCell>
-                                <TableCell align="left">{row.price}</TableCell>
+                                <TableCell align="left">$ {row.price}</TableCell>
                                 <TableCell align="left"><img src={row.photo} alt={row.title} style={{width:"50px", height:"auto", borderRadius:"25%"}} /></TableCell>
                                 <TableCell align="left">{row.info}</TableCell>
                                 <TableCell align="left"><Button onClick={()=> handleDeleteProduct(row._id)}>Delete</Button></TableCell>

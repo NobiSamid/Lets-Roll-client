@@ -36,7 +36,7 @@ const Login = () => {
     }
 
     return (
-        <Container sx={{height:"50vh"}}>
+        <Container style={{minHeight:"90vh"}}>
             <Grid container spacing={2}>
                 <Grid sx={{my:"auto", pr:8}} item xs={12} md={6}>
                     <Typography sx={{fontSize:'2rem', fontWeight:'500'}}>Please Log in to purchase and experience many more features</Typography>

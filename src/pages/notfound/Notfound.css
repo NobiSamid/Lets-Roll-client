@@ -1,0 +1,41 @@
+.bg {
+    background-color: black;
+}
+
+.fourOfour {
+    color: black;
+    font-size: 550px;
+    font-weight: 800;
+    -webkit-text-stroke-width: 3px;
+    -webkit-text-stroke-color: rgb(156, 26, 26);
+}
+
+.float {
+    position: fixed;
+    top: 40%;
+    left: 25%;
+}
+
+.page {
+    color: rgb(165, 76, 76);
+    font-size: 100px;
+    font-weight: 700;
+}
+
+button {
+    border: none;
+    background-color: rgb(31, 81, 255);
+    border-radius: 20px;
+    padding: 10px;
+}
+
+.btntxt {
+    text-decoration: none;
+    color: wheat;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.btntxt:hover {
+    color: black;
+}

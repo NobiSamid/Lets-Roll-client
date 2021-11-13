@@ -65,7 +65,7 @@ const PlaceOrder = () => {
         e.preventDefault();
     }
     return (
-        <Container >
+        <Container style={{minHeight:'100vh'}} >
         <Typography sx={{p:0.5, fontSize:"3rem", mt:2}}>Confirm your Purchase</Typography>
             <Grid sx={{height:'50vh'}} container spacing={2} >
                 <Grid item sx={{my:'auto'}} sm={12} md={6} >

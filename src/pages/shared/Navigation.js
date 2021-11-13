@@ -11,6 +11,8 @@ import { Menu, MenuItem } from '@mui/material';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 import useAuth from '../../Hooks/useAuth';
+import AccountCircle from '@mui/icons-material/AccountCircle';
+
 
 const Navigation = () => {
 
@@ -72,18 +74,26 @@ const Navigation = () => {
                                     </NavLink>
                                 </MenuItem>
                                 <MenuItem onClick={handleClose}>
-                                    <NavLink style={{ textDecoration: "none", color: 'black' }} to="/dashboard">
-                                        Dashboard
-                                    </NavLink>
+                                    {
+                                        user.email &&
+                                        <NavLink style={{ textDecoration: "none", color: 'black' }} to="/dashboard">
+                                            Dashboard
+                                        </NavLink>
+                                    }
+
                                 </MenuItem>
-                                <MenuItem>
-                                    <Typography>{user?.displayName}</Typography>
-                                </MenuItem>
+                                {
+                                    user.email &&
+                                    <MenuItem>
+                                        <Typography sx={{ fontFamily: "cursive", fontSize: "1.25rem", fontWeight: '600' }}><AccountCircle sx={{ mt: 1 }} />{user?.displayName}</Typography>
+                                    </MenuItem>
+                                }
+
                                 <MenuItem onClick={handleClose}>
                                     {
                                         user.email ?
                                             (<>
-                                                <Button color="inherit">Log-Out</Button>
+                                                <Button onClick={logOut} color="inherit">Log-Out</Button>
                                             </>)
                                             :
                                             (<NavLink style={{ textDecoration: "none", color: 'black' }} to="/login">
@@ -101,7 +111,7 @@ const Navigation = () => {
                                     </NavLink>
 
                                     <NavLink style={{ textDecoration: "none", color: 'whitesmoke' }} to="/products">
-                                        Explore
+                                        Products
                                     </NavLink>
 
                                     {user.email &&
@@ -109,7 +119,9 @@ const Navigation = () => {
                                             Dashboard
                                         </NavLink>
                                     }
-                                    <Typography>{user?.displayName}</Typography>
+                                    {
+                                        user.email && <Typography sx={{ fontFamily: "cursive", fontSize: "1.5rem", fontWeight: '600' }}><AccountCircle sx={{ mt: 1 }} />{user?.displayName}</Typography>
+                                    }
 
                                     {
                                         user.email ? (<Button onClick={logOut} color="inherit">log-out</Button>) : (

@@ -37,7 +37,7 @@ const CreateAdmin = () => {
         e.preventDefault()
     }
     return (
-        <div style={{height:'50vh'}}>
+        <div style={{minHeight:'80vh'}}>
             <h1>Create admin here</h1>
             <form onSubmit={handleAdminSubmit}>
                     <TextField

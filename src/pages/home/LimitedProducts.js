@@ -49,7 +49,7 @@ const LimitedProducts = () => {
                                 </CardContent>
                             </CardActionArea>
                             <CardActions>
-                                <Link to={`/products/${product._id}`}>
+                                <Link style={{textDecoration:"none", margin:"auto"}} to={`/products/${product._id}`}>
                                     <Button sx={{ mx: "auto" }} size="large" variant="outlined" color="success" endIcon={<AddShoppingCartIcon />}>
                                         Purchase
                                     </Button>

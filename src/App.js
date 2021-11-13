@@ -14,10 +14,13 @@ import Register from './pages/authentication/signUpIn/Register';
 import AuthProvider from './context/AuthProvider';
 import PrivateRoute from './pages/authentication/privateroute/PrivateRoute';
 import PlaceOrder from './pages/placeOrder/PlaceOrder';
+import Notfound from './pages/notfound/Notfound';
 
 function App() {
   return (
     <div className="App">
+
+    {/* all Routes which are nested into authProvider to share data of useAuth with all component */}
       <AuthProvider>
         <Router>
           <Navigation></Navigation>
@@ -39,6 +42,9 @@ function App() {
             </Route>
             <Route exact path="/register">
               <Register></Register>
+            </Route>
+            <Route path="*">
+              <Notfound></Notfound>
             </Route>
           </Switch>
           <Footer></Footer>
