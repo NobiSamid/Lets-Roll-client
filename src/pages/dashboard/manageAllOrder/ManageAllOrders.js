@@ -4,80 +4,73 @@ import Paper from '@mui/material/Paper';
 
 const ManageAllOrders = () => {
 
-    const [ allOrders, setAllOrders] = useState([]);
+    const [allOrders, setAllOrders] = useState([]);
     const [status, setStatus] = useState('pending');
     const [updatedOrder, setUpdatedOrder] = useState({});
 
     console.log(status);
 
-    useEffect(()=>{
+    useEffect(() => {
         // fetch("http://localhost:5000/orders")
         fetch("https://aqueous-mountain-11815.herokuapp.com/orders")
-        .then(res=>res.json())
-        .then(data=>setAllOrders(data))
-    },[]);
+            .then(res => res.json())
+            .then(data => setAllOrders(data))
+    }, []);
     // console.log(allOrders);
 
-    const handleDeleteOrder = (id) =>{
+    const handleDeleteOrder = (id) => {
         console.log("hello there you wanna delete", id);
         const proceed = window.confirm('Are you sure, you want to delete this order ?????');
-        if(proceed){
+        if (proceed) {
             console.log('delete kore dei eta?', id);
             // const url = `http://localhost:5000/orders/${id}`;
             const url = `https://aqueous-mountain-11815.herokuapp.com/orders/${id}`;
             fetch(url, {
                 method: 'DELETE'
             })
-            .then(res => res.json())
-            .then(data =>{
-                console.log(data)
-                if(data.deletedCount){
-                    alert("successfully deleted")
-                    const remaining = allOrders.filter(ord => ord._id !== id);
-                    setAllOrders(remaining);
-                }
-            })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data)
+                    if (data.deletedCount) {
+                        alert("successfully deleted")
+                        const remaining = allOrders.filter(ord => ord._id !== id);
+                        setAllOrders(remaining);
+                    }
+                })
         }
     }
 
-    const handleUpdateOrder = (id) =>{
+    const handleUpdateOrder = (id) => {
         // const url = `http://localhost:5000/orders/${id}`;
         const url = `https://aqueous-mountain-11815.herokuapp.com/orders/${id}`;
         fetch(url)
-        .then(res=>res.json())
-        .then(data=>setUpdatedOrder(data))
+            .then(res => res.json())
+            .then(data => setUpdatedOrder(data))
         console.log(updatedOrder)
-        const newUpdatedOrder = {...updatedOrder, status:status}
+        const newUpdatedOrder = { ...updatedOrder, status: status }
         console.log(newUpdatedOrder);
         console.log(Object.keys(newUpdatedOrder).length);
         // if(Object.keys(newUpdatedOrder).length === 7){
-            fetch(url,{
-            method:'PUT',
-            headers:{
-                'content-type':'application/json'
+        fetch(url, {
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json'
             },
-            body:JSON.stringify(newUpdatedOrder)
+            body: JSON.stringify(newUpdatedOrder)
         })
-        .then(res=>res.json())
-        .then(data=>{
-            console.log(data);
-        })
-
-        // fetch(url,{
-        //     method:'PUT',
-        //     headers:{
-        //         'content-type':'application/json'
-        //     },
-        //     body:JSON.stringify(id)
-        // })
-        // .then()
-        // console.log(url);
+            .then(res => res.json())
+            .then(data => {
+                if (data.modifiedCount) {
+                    console.log(data);
+                    alert('Status Updated successfully, please refresh to see the result')
+                }
+            })
     }
 
     return (
         <div>
             <h2>Manage all ordered products</h2>
-           { allOrders.length === 0 ? <CircularProgress style={{marginTop:"100px", marginBottom:"100px"}} /> : <TableContainer sx={{width:"80%", mx:'auto'}} component={Paper}>
+            {allOrders.length === 0 ? <CircularProgress style={{ marginTop: "100px", marginBottom: "100px" }} /> : <TableContainer sx={{ width: "80%", mx: 'auto' }} component={Paper}>
                 <Table sx={{ minWidth: "50%" }} aria-label="simple table">
                     <TableHead>
                         <TableRow>
@@ -106,7 +99,7 @@ const ManageAllOrders = () => {
                                 <TableCell align="left">{row.price}</TableCell>
                                 <TableCell align="left">{row.quantity}</TableCell>
                                 <TableCell align="left">{row?.status}</TableCell>
-                                <TableCell align="left"><Button onClick={()=> handleDeleteOrder(row._id)}>Delete</Button></TableCell>
+                                <TableCell align="left"><Button onClick={() => handleDeleteOrder(row._id)}>Delete</Button></TableCell>
                                 <TableCell align="left">
                                     <RadioGroup value={status} onChange={(e) => setStatus(e.target.value)}>
                                         <FormControlLabel value="pending" control={<Radio />} label="Pending" />
@@ -114,7 +107,7 @@ const ManageAllOrders = () => {
                                         <FormControlLabel value="shipped" control={<Radio />} label="Shipped" />
                                     </RadioGroup>
                                 </TableCell>
-                                <TableCell align="left"><Button onClick={()=> handleUpdateOrder(row._id)}>Update Status</Button></TableCell>
+                                <TableCell align="left"><Button onClick={() => handleUpdateOrder(row._id)}>Update Status</Button></TableCell>
                             </TableRow>
                         ))}
                     </TableBody>
