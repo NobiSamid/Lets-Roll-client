@@ -51,6 +51,7 @@ const MyOrders = () => {
                             <TableCell align="left">Email</TableCell>
                             <TableCell align="left">Price(1)</TableCell>
                             <TableCell align="left">Quantity</TableCell>
+                            <TableCell align="left">Status</TableCell>
                             <TableCell align="left">Delete</TableCell>
                         </TableRow>
                     </TableHead>
@@ -67,6 +68,7 @@ const MyOrders = () => {
                                 <TableCell align="left">{row.email}</TableCell>
                                 <TableCell align="left">{row.price}</TableCell>
                                 <TableCell align="left">{row.quantity}</TableCell>
+                                <TableCell align="left">{row?.status}</TableCell>
                                 <TableCell align="left"><Button onClick={()=> handleDeleteMyOrder(row._id)}>Delete</Button></TableCell>
                             </TableRow>
                         ))}

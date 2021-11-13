@@ -97,7 +97,7 @@ const Review = () => {
                         
                         <Button sx={{ width: 150, m: 2 }} type="submit" variant="contained">Submit</Button>
                     </form>
-                    {success && <Alert severity="success">Added the product successfully</Alert>}
+                    {success && <Alert severity="success">Review submitted successfully</Alert>}
                 </Grid>
             </Grid>
         </Container>

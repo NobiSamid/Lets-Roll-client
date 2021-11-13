@@ -36,6 +36,7 @@ const PlaceOrder = () => {
             email: user.email,
             product: product,
             price: price,
+            status:'pending'
         };
         newOrder[field] = value;
         setPlaceOrder(newOrder);
