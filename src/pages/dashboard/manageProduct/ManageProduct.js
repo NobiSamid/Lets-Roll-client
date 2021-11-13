@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 
 const ManageProduct = () => {
 
+    ///////////////////////////////// Fetch data from database of products and setting in a state
     const [allProducts, setAllProducts] = useState([]);
 
     useEffect(()=>{
@@ -12,8 +13,10 @@ const ManageProduct = () => {
         .then(res=>res.json())
         .then(data=>setAllProducts(data))
     },[]);
-    console.log(allProducts);
+    // console.log(allProducts);
 
+
+    //////////// Delete product from database function
     const handleDeleteProduct = (id) =>{
         console.log("hello there you wanna delete", id);
         const proceed = window.confirm('Are you sure, you want to delete this Product ?????');

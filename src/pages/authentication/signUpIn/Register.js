@@ -6,14 +6,19 @@ import React, { useState } from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
 import useAuth from '../../../Hooks/useAuth';
 
+////////// Registration component
+
 const Register = () => {
 
     const [loginData, setLoginData] = useState({});
 
+    /// history for redirect
     const history = useHistory();
 
+    //// destructuring data of useFirebase hook via useAuth hook
     const { user, registerUser, isLoading, authError, errorCode } = useAuth();
 
+    ///// get input field data of registration form and make an object
     const handleOnBlur = e => {
         const field = e.target.name;
         const value = e.target.value;
@@ -24,6 +29,7 @@ const Register = () => {
         console.log(loginData);
     }
 
+    /////// Registration function 
     const handleRegisterSubmit = e => {
         if (loginData.password !== loginData.password2) {
             alert("Your password did not mached")

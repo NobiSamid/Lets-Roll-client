@@ -7,15 +7,20 @@ import React, { useState } from 'react';
 import { NavLink, useLocation, useHistory } from 'react-router-dom';
 import useAuth from '../../../Hooks/useAuth';
 
+/////////////////// Login component
+
 const Login = () => {
 
     const [loginData, setLoginData] = useState({});
 
+    /// Destructuring useFirebase function via useAuth
     const { user, loginUser, signWithGoogle, isLoading, authError, errorCode } = useAuth();
 
+    ////// Location and history call for redirect 
     const location = useLocation();
     const history = useHistory();
 
+    /////// Get data from login form
     const handleOnBlur = e => {
         const field = e.target.name;
         const value = e.target.value;
@@ -26,11 +31,13 @@ const Login = () => {
         console.log(loginData);
     }
 
+    ////// Log in function
     const handleLoginSubmit = e => {
         loginUser(loginData.email, loginData.password, location, history);
         e.preventDefault();
     }
 
+    /////// login by Google function
     const handleGoogleSignIn = () =>{
         signWithGoogle(location, history);
     }

@@ -1,6 +1,7 @@
 import React from 'react';
 import './Banner.css';
 
+///////////////////////// Top banner
 const Banner = () => {
     return (
         <section>

@@ -4,14 +4,20 @@ import DisplayReview from './DisplayReview';
 import LimitedProducts from './LimitedProducts';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Banner from './banner/Banner';
-import Footer from '../shared/Footer';
 
+//////////////////////// Home component
 
 const Home = () => {
     return (
         <div>
+
+        {/************************ Banner component **********************************/}
             <Banner></Banner>
+
+            {/************************ Limited Products from Database component **********************************/}
             <LimitedProducts></LimitedProducts>
+
+            {/************************ FAQ , my own component **********************************/}
             <div style={{width:"60%", margin:"auto"}}>
                 <Accordion>
                     <AccordionSummary
@@ -70,6 +76,8 @@ const Home = () => {
                     </AccordionDetails>
                 </Accordion>
             </div><br /><br /><br />
+
+            {/************************ Display review component **********************************/}
             <DisplayReview></DisplayReview>
         </div>
     );

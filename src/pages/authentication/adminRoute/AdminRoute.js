@@ -3,6 +3,8 @@ import React from 'react';
 import { Redirect, Route } from 'react-router';
 import useAuth from '../../../Hooks/useAuth';
 
+////////////// Admin route for dashboard 
+
 const AdminRoute = ({ children, ...rest }) => {
     const { user, admin, isLoading } = useAuth();
     if(isLoading){ return <CircularProgress />}

@@ -4,12 +4,14 @@ import Paper from '@mui/material/Paper';
 
 const ManageAllOrders = () => {
 
+    ////////// states
     const [allOrders, setAllOrders] = useState([]);
     const [status, setStatus] = useState('pending');
     const [updatedOrder, setUpdatedOrder] = useState({});
 
-    console.log(status);
+    // console.log(status);
 
+    ////////////////////fetching data from Db or orders
     useEffect(() => {
         // fetch("http://localhost:5000/orders")
         fetch("https://aqueous-mountain-11815.herokuapp.com/orders")
@@ -18,11 +20,12 @@ const ManageAllOrders = () => {
     }, []);
     // console.log(allOrders);
 
+    ////////////////////////////////////// Delete Order from database function
     const handleDeleteOrder = (id) => {
-        console.log("hello there you wanna delete", id);
-        const proceed = window.confirm('Are you sure, you want to delete this order ?????');
+        // console.log("hello there you wanna delete", id);
+        const proceed = window.confirm('Are you sure, you want to delete this order ?');
         if (proceed) {
-            console.log('delete kore dei eta?', id);
+            // console.log('delete kore dei eta?', id);
             // const url = `http://localhost:5000/orders/${id}`;
             const url = `https://aqueous-mountain-11815.herokuapp.com/orders/${id}`;
             fetch(url, {
@@ -30,7 +33,7 @@ const ManageAllOrders = () => {
             })
                 .then(res => res.json())
                 .then(data => {
-                    console.log(data)
+                    // console.log(data)
                     if (data.deletedCount) {
                         alert("successfully deleted")
                         const remaining = allOrders.filter(ord => ord._id !== id);
@@ -40,6 +43,8 @@ const ManageAllOrders = () => {
         }
     }
 
+
+    //////////////////////////////////// Update order of database function
     const handleUpdateOrder = (id) => {
         // const url = `http://localhost:5000/orders/${id}`;
         const url = `https://aqueous-mountain-11815.herokuapp.com/orders/${id}`;
@@ -48,7 +53,7 @@ const ManageAllOrders = () => {
             .then(data => setUpdatedOrder(data))
         console.log(updatedOrder)
         const newUpdatedOrder = { ...updatedOrder, status: status }
-        console.log(newUpdatedOrder);
+        // console.log(newUpdatedOrder);
         console.log(Object.keys(newUpdatedOrder).length);
         // if(Object.keys(newUpdatedOrder).length === 7){
         fetch(url, {
@@ -61,8 +66,8 @@ const ManageAllOrders = () => {
             .then(res => res.json())
             .then(data => {
                 if (data.modifiedCount) {
-                    console.log(data);
-                    alert('Status Updated successfully, please refresh to see the result')
+                    // console.log(data);
+                    alert('Status Updated successfully, please Refresh to see the result')
                 }
             })
     }
@@ -99,7 +104,11 @@ const ManageAllOrders = () => {
                                 <TableCell align="left">{row.price}</TableCell>
                                 <TableCell align="left">{row.quantity}</TableCell>
                                 <TableCell align="left">{row?.status}</TableCell>
+
+                                {/* Delete order firing button */}
                                 <TableCell align="left"><Button onClick={() => handleDeleteOrder(row._id)}>Delete</Button></TableCell>
+
+                                 {/* Update status changing radio button */}
                                 <TableCell align="left">
                                     <RadioGroup value={status} onChange={(e) => setStatus(e.target.value)}>
                                         <FormControlLabel value="pending" control={<Radio />} label="Pending" />
@@ -107,6 +116,8 @@ const ManageAllOrders = () => {
                                         <FormControlLabel value="shipped" control={<Radio />} label="Shipped" />
                                     </RadioGroup>
                                 </TableCell>
+
+                                {/* Update status firing button */}
                                 <TableCell align="left"><Button onClick={() => handleUpdateOrder(row._id)}>Update Status</Button></TableCell>
                             </TableRow>
                         ))}

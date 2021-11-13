@@ -1,10 +1,13 @@
-import { Button, Card, CardActionArea, CardActions, CardContent, CardMedia, CircularProgress, Container, Grid, Typography } from '@mui/material';
+import { Button, Card, CardActionArea, CardActions, CardContent, CardMedia, CircularProgress, Grid, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 
 
 const LimitedProducts = () => {
+
+    //// Fetch data and and set data in state
+
     const [limitedProducts, setLimitedProducts] = useState([]);
 
     useEffect(() => {
@@ -13,9 +16,9 @@ const LimitedProducts = () => {
             .then(res => res.json())
             .then(data => setLimitedProducts(data))
     }, [])
-    console.log(limitedProducts);
+    // console.log(limitedProducts);
     return (
-        <div>{ limitedProducts.length === 0 ? <CircularProgress /> :
+        <div>{limitedProducts.length === 0 ? <CircularProgress /> :
             <Grid container sx={{ my: 5, mr: 5 }} spacing={1}>
                 {
                     limitedProducts.map(product => <Grid
@@ -49,7 +52,7 @@ const LimitedProducts = () => {
                                 </CardContent>
                             </CardActionArea>
                             <CardActions>
-                                <Link style={{textDecoration:"none", margin:"auto"}} to={`/products/${product._id}`}>
+                                <Link style={{ textDecoration: "none", margin: "auto" }} to={`/products/${product._id}`}>
                                     <Button sx={{ mx: "auto" }} size="large" variant="outlined" color="success" endIcon={<AddShoppingCartIcon />}>
                                         Purchase
                                     </Button>

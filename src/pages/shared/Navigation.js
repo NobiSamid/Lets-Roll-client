@@ -17,9 +17,11 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 const Navigation = () => {
 
     const { user, logOut } = useAuth();
+
+    ////////////////////// for mobile navigation bar functions //////////
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
-    console.log(isMobile);
+    // console.log(isMobile);
     const [anchorEl, setAnchorEl] = useState(null);
 
     const handleMenu = (event) => {
@@ -34,76 +36,81 @@ const Navigation = () => {
             <AppBar position="static">
                 <Toolbar>
                     <Typography variant="h6" component="div" style={{ flex: 1, textAlign: "left" }}>
-                        Let's Roll
+                        <a href="/" style={{textDecoration:"none", fontSize:"3rem", fontWeight:7000, fontFamily:"-moz-initial", color:"wheat", marginLeft:"5rem"}}>Let's Roll</a>
                     </Typography>
                     <Box style={{ width: "40%" }}>
-                        {isMobile ? (<>
-                            <IconButton
-                                size="large"
-                                edge="end"
-                                color="inherit"
-                                aria-label="menu"
-                                sx={{ mr: 2 }}
-                                onClick={handleMenu}
-                            >
-                                <MenuIcon />
-                            </IconButton>
-                            <Menu
-                                id="menu-appbar"
-                                anchorEl={anchorEl}
-                                anchorOrigin={{
-                                    vertical: 'top',
-                                    horizontal: 'right',
-                                }}
-                                keepMounted
-                                transformOrigin={{
-                                    vertical: 'top',
-                                    horizontal: 'right',
-                                }}
-                                open={Boolean(anchorEl)}
-                                onClose={handleClose}
-                            >
-                                <MenuItem onClick={handleClose}>
-                                    <NavLink style={{ textDecoration: "none", color: 'black' }} to="/">
-                                        Home
-                                    </NavLink>
-                                </MenuItem>
-                                <MenuItem onClick={handleClose}>
-                                    <NavLink style={{ textDecoration: "none", color: 'black' }} to="/products">
-                                        Products
-                                    </NavLink>
-                                </MenuItem>
-                                <MenuItem onClick={handleClose}>
+                        {isMobile ? (
+
+                            <>
+                                {/***************** Navigation for Mobile ****************/}
+                                <IconButton
+                                    size="large"
+                                    edge="end"
+                                    color="inherit"
+                                    aria-label="menu"
+                                    sx={{ mr: 2 }}
+                                    onClick={handleMenu}
+                                >
+                                    <MenuIcon />
+                                </IconButton>
+                                <Menu
+                                    id="menu-appbar"
+                                    anchorEl={anchorEl}
+                                    anchorOrigin={{
+                                        vertical: 'top',
+                                        horizontal: 'right',
+                                    }}
+                                    keepMounted
+                                    transformOrigin={{
+                                        vertical: 'top',
+                                        horizontal: 'right',
+                                    }}
+                                    open={Boolean(anchorEl)}
+                                    onClose={handleClose}
+                                >
+                                    <MenuItem onClick={handleClose}>
+                                        <NavLink style={{ textDecoration: "none", color: 'black' }} to="/">
+                                            Home
+                                        </NavLink>
+                                    </MenuItem>
+                                    <MenuItem onClick={handleClose}>
+                                        <NavLink style={{ textDecoration: "none", color: 'black' }} to="/products">
+                                            Products
+                                        </NavLink>
+                                    </MenuItem>
+                                    <MenuItem onClick={handleClose}>
+                                        {
+                                            user.email &&
+                                            <NavLink style={{ textDecoration: "none", color: 'black' }} to="/dashboard">
+                                                Dashboard
+                                            </NavLink>
+                                        }
+
+                                    </MenuItem>
                                     {
                                         user.email &&
-                                        <NavLink style={{ textDecoration: "none", color: 'black' }} to="/dashboard">
-                                            Dashboard
-                                        </NavLink>
+                                        <MenuItem>
+                                            <Typography sx={{ fontFamily: "cursive", fontSize: "1.25rem", fontWeight: '600' }}><AccountCircle sx={{ mt: 1 }} />{user?.displayName}</Typography>
+                                        </MenuItem>
                                     }
 
-                                </MenuItem>
-                                {
-                                    user.email &&
-                                    <MenuItem>
-                                        <Typography sx={{ fontFamily: "cursive", fontSize: "1.25rem", fontWeight: '600' }}><AccountCircle sx={{ mt: 1 }} />{user?.displayName}</Typography>
+                                    <MenuItem onClick={handleClose}>
+                                        {
+                                            user.email ?
+                                                (<>
+                                                    <Button onClick={logOut} color="inherit">Log-Out</Button>
+                                                </>)
+                                                :
+                                                (<NavLink style={{ textDecoration: "none", color: 'black' }} to="/login">
+                                                    <Button color="inherit">Log-in</Button>
+                                                </NavLink>)
+                                        }
+
                                     </MenuItem>
-                                }
+                                </Menu>
+                            </>) :
+                            /**************************** navigation for Computer ****************/
 
-                                <MenuItem onClick={handleClose}>
-                                    {
-                                        user.email ?
-                                            (<>
-                                                <Button onClick={logOut} color="inherit">Log-Out</Button>
-                                            </>)
-                                            :
-                                            (<NavLink style={{ textDecoration: "none", color: 'black' }} to="/login">
-                                                <Button color="inherit">Log-in</Button>
-                                            </NavLink>)
-                                    }
-
-                                </MenuItem>
-                            </Menu>
-                        </>) :
                             (
                                 <Box style={{ display: 'flex' }} sx={{ justifyContent: 'space-evenly', alignItems: 'center' }} >
                                     <NavLink style={{ textDecoration: "none", color: 'whitesmoke' }} to="/">

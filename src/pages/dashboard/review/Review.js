@@ -5,14 +5,16 @@ import useAuth from '../../../Hooks/useAuth';
 const Review = () => {
     const { user } = useAuth();
 
+    //////////// initial info of review
     const initialInfo = { user: user.displayName, subject: '', opinion: '' }
 
+    /////////////// states
     const [review, setReview] = useState(initialInfo);
     const [success, setSuccess] = useState(false);
     const [rate, setRate] = useState(1);
-    console.log(rate);
+    // console.log(rate);
 
-
+    /////////////////////////////// Taking data from input field and making an object
     const handleOnBlurR = e => {
         const field = e.target.name;
         const value = e.target.value;
@@ -21,26 +23,27 @@ const Review = () => {
         newReview[field] = value;
         newReview.rating = rate;
         setReview(newReview);
-        console.log(newReview);
+        // console.log(newReview);
     }
 
+    ///// Review submit function and Post function to the database
     const handleReviewSubmit = e => {
         // fetch('http://localhost:5000/reviews',{
-        fetch('https://aqueous-mountain-11815.herokuapp.com/reviews',{
+        fetch('https://aqueous-mountain-11815.herokuapp.com/reviews', {
             method: 'POST',
-            headers:{
-                'content-type':'application/json'
+            headers: {
+                'content-type': 'application/json'
             },
-            body:JSON.stringify(review)
+            body: JSON.stringify(review)
         })
-        .then(res => res.json())
-        .then(data =>{
-            console.log(data);
-            if(data.acknowledged === true){
-                console.log("operation success");
-                setSuccess(true)
-            }
-        })
+            .then(res => res.json())
+            .then(data => {
+                // console.log(data);
+                if (data.acknowledged === true) {
+                    console.log("operation success");
+                    setSuccess(true)
+                }
+            })
         e.preventDefault();
     }
 
@@ -48,10 +51,10 @@ const Review = () => {
         <Container>
             <Grid container spacing={2}>
                 <Grid item sm={12} md={6}>
-                    <Typography sx={{fontSize:"2rem", fontWeight:"600"}}>{user?.displayName}</Typography>
-                    <Typography sx={{fontSize:"2rem", fontWeight:"600"}}>{user?.email}</Typography>
+                    <Typography sx={{ fontSize: "2rem", fontWeight: "600" }}>{user?.displayName}</Typography>
+                    <Typography sx={{ fontSize: "2rem", fontWeight: "600" }}>{user?.email}</Typography>
                     <Divider />
-                    <Typography sx={{fontSize:"1.5rem", fontWeight:"500"}}>Please let us know about your experience. We value our every single customer. Don't have a good day , Have a greate day</Typography>
+                    <Typography sx={{ fontSize: "1.5rem", fontWeight: "500" }}>Please let us know about your experience. We value our every single customer. Don't have a good day , Have a greate day</Typography>
                 </Grid>
                 <Grid item sm={12} md={6}>
                     <form onSubmit={handleReviewSubmit}>
@@ -94,7 +97,7 @@ const Review = () => {
                             sx={{ width: "75%", m: 2 }}
                             onBlur={handleOnBlurR}
                         /><br />
-                        
+
                         <Button sx={{ width: 150, m: 2 }} type="submit" variant="contained">Submit</Button>
                     </form>
                     {success && <Alert severity="success">Review submitted successfully</Alert>}

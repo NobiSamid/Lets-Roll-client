@@ -3,7 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './Notfound.css';
 
-
+//////////////// Not found page
 const Notfound = () => {
     return (
         <div className="bg">

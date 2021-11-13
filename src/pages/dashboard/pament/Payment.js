@@ -1,5 +1,6 @@
 import React from 'react';
 
+/////////////////////////// Pament component
 const Payment = () => {
     return (
         <div style={{minHeight:"80vh"}}>

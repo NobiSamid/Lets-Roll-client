@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom';
 
 
 const Product = (props) => {
+
+    /////////////////////////////////////////////// Destructuring_props
     const { title, info, price, photo, _id } = props.product || {};
     return (
         <Grid item sx={{my:3, mx:"auto"}} xs={12} sm={6} md={4}>

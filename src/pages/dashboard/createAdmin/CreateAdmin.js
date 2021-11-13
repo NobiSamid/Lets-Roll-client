@@ -4,7 +4,7 @@ import TextField from '@mui/material/TextField';
 import { Alert, Button } from '@mui/material';
 import InputAdornment from '@mui/material/InputAdornment';
 
-
+/////////////// Create admin component
 
 const CreateAdmin = () => {
 
@@ -12,9 +12,12 @@ const CreateAdmin = () => {
     const [success, setSuccess] = useState(false);
 
 
+    /// Taking email of upcomming admin
     const handleOnBlur = e => {
         setEmail(e.target.value);
     }
+
+    //////////////////////////////// add new admin function , acctually its an update function 
     const handleAdminSubmit = e => {
         const user = { email };
         // fetch('http://localhost:5000/users/admin', {
@@ -28,9 +31,9 @@ const CreateAdmin = () => {
             .then(res => res.json())
             .then(data => {
                 if(data.modifiedCount){
-                    console.log(data);
+                    // console.log(data);
                     setSuccess(true)
-                    console.log(success);
+                    // console.log(success);
                 }
                 
             })

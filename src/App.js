@@ -20,7 +20,7 @@ function App() {
   return (
     <div className="App">
 
-    {/* all Routes which are nested into authProvider to share data of useAuth with all component */}
+      {/* all Routes which are nested into authProvider to share data of useAuth with all component */}
       <AuthProvider>
         <Router>
           <Navigation></Navigation>
@@ -31,6 +31,8 @@ function App() {
             <Route exact path="/products">
               <Products></Products>
             </Route>
+
+            {/********************************* Private Route ***********************/}
             <PrivateRoute path="/products/:pkey">
               <PlaceOrder></PlaceOrder>
             </PrivateRoute>

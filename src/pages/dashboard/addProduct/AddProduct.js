@@ -2,12 +2,18 @@ import { Alert, Button, Container, Divider, Grid, InputAdornment, TextField, Typ
 import React, { useState } from 'react';
 import useAuth from '../../../Hooks/useAuth';
 
+
+//////////////// Product add component for admin
+
 const AddProduct = () => {
     const { user } = useAuth();
 
+    ///// states
     const [productData, setProductData] = useState({});
     const [success, setSuccess] = useState(false);
 
+
+    //////// Taking data from input field of product
     const handleOnBlurP = e => {
         const field = e.target.name;
         const value = e.target.value;
@@ -15,8 +21,10 @@ const AddProduct = () => {
         const newProductData = { ...productData };
         newProductData[field] = value;
         setProductData(newProductData);
-        console.log(productData);
+        // console.log(productData);
     }
+
+    /////////// Add new product to the database function
     const handleProductSubmit = e => {
         // fetch('http://localhost:5000/products',{
         fetch('https://aqueous-mountain-11815.herokuapp.com/products',{

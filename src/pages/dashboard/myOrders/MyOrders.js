@@ -6,6 +6,8 @@ import { typography } from '@mui/system';
 
 
 const MyOrders = () => {
+
+    //////////////////////////////// Fetch users Order and set in a state
     const { user } = useAuth();
     const [myOrders, setMyOrders] = useState([])
 
@@ -16,10 +18,12 @@ const MyOrders = () => {
         .then(res=>res.json())
         .then(data=>setMyOrders(data))
     },[])
-    console.log(myOrders);
+    // console.log(myOrders);
 
+
+    /////////////////////////////////////// Delete order function
     const handleDeleteMyOrder = (id) =>{
-        console.log('delete kore dei ', id)
+        // console.log('delete kore dei ', id)
         const proceed = window.confirm('Are you sure, you want to delete this order ?????');
         if(proceed){
             console.log('delete kore dei eta?', id);
@@ -30,7 +34,7 @@ const MyOrders = () => {
             })
             .then(res => res.json())
             .then(data =>{
-                console.log(data)
+                // console.log(data)
                 if(data.deletedCount){
                     alert("successfully deleted")
                     const remaining = myOrders.filter(ord => ord._id !== id);

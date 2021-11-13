@@ -26,13 +26,16 @@ import useAuth from '../../../Hooks/useAuth';
 import AdminRoute from '../../authentication/adminRoute/AdminRoute';
 import Payment from '../pament/Payment';
 
+////////////////////// Dashboard component
+
 const drawerWidth = 220;
 
+/////////////////////Dashboard functions from MUI
 function Dashboard(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
-  // Route match for nested routing
+  //////////////////// Route match for nested routing
   let { path, url } = useRouteMatch();
   const { admin, logOut } = useAuth();
 
@@ -44,9 +47,11 @@ function Dashboard(props) {
     <div>
       <Toolbar />
       <Toolbar />
+
+      {/************************** Route Links of dashboard *******************************/}
       <Link to="/" style={{ textDecoration: 'none' }} ><Button variant="outlined" style={{ margin: "10px" }} color="secondary">Back to Home</Button></Link><br />
       <Link to={`${url}`} style={{ textDecoration: 'none' }} ><Button variant="outlined" style={{ margin: "10px" }} color="secondary">Dashboard</Button></Link><br />
-      <Link style={{textDecoration:"none"}} to={`${url}/review`} ><Button variant="outlined" style={{ margin: "10px" }} color="secondary">Review</Button></Link><br />
+      <Link style={{ textDecoration: "none" }} to={`${url}/review`} ><Button variant="outlined" style={{ margin: "10px" }} color="secondary">Review</Button></Link><br />
       <Link to={`${url}/payment`} style={{ textDecoration: 'none' }} ><Button variant="outlined" style={{ margin: "10px" }} color="secondary">Payment</Button></Link><br />
       <Button variant="contained" onClick={logOut} color="inherit">Log out</Button>
       <Divider style={{ margin: "20px" }} />
@@ -123,7 +128,7 @@ function Dashboard(props) {
         sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
       >
         <Toolbar />
-
+        {/************************** Dashbard nested routing *******************************/}
         <Switch>
           <Route exact path={path}>
             <MyOrders></MyOrders>

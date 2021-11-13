@@ -6,7 +6,11 @@ import { getAuth, createUserWithEmailAndPassword, updateProfile, signInWithEmail
 //initialize Firebase app
 initializeFirebase();
 
+////////// useFirebase hook
+
 const useFirebase = () => {
+
+    /// all state
     const [user, setUser] = useState({});
     const [isLoading, setIsLoading] = useState(true);
     const [authError, setAuthError] = useState('');
@@ -14,17 +18,18 @@ const useFirebase = () => {
     const [admin, setAdmin] = useState(false);
 
 
+    ///// provider and uthentication function calling from firebase
     const auth = getAuth();
     const googleProvider = new GoogleAuthProvider();
 
-    // Register user
+    //////////////////// Register user and Posting user data to the database
     const registerUser = (email, password, name, history) => {
         setIsLoading(true);
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 setAuthError('');
                 setErrorCode('');
-                const newUser = { email, displayName: name};
+                const newUser = { email, displayName: name };
                 setUser(newUser);
 
                 // save user to the database
@@ -32,10 +37,10 @@ const useFirebase = () => {
                 // send name to fire base after creation
                 updateProfile(auth.currentUser, {
                     displayName: name
-                  }).then(() => {
-                      
-                  }).catch((error) => {
-                  
+                }).then(() => {
+
+                }).catch((error) => {
+
                 });
 
                 history.replace('/');
@@ -47,7 +52,7 @@ const useFirebase = () => {
             .finally(() => setIsLoading(false));
     }
 
-    //Login user
+    //Login user function
     const loginUser = (email, password, location, history) => {
         setIsLoading(true);
         signInWithEmailAndPassword(auth, email, password)
@@ -64,7 +69,7 @@ const useFirebase = () => {
             .finally(() => setIsLoading(false));
     }
 
-    //Google pop up login
+    //Google pop up login and UPSERT operation of server to save the information of the user to the database
     const signWithGoogle = (location, history) => {
         setIsLoading(true);
         signInWithPopup(auth, googleProvider)
@@ -95,14 +100,15 @@ const useFirebase = () => {
         return () => unsubscribe;
     }, [])
 
-    // check Admin or not
-    useEffect(()=>{
+    // check Admin or not for making new admin
+    useEffect(() => {
         // fetch(`http://localhost:5000/users/${user.email}`)
         fetch(`https://aqueous-mountain-11815.herokuapp.com/users/${user.email}`)
-        .then(res => res.json())
-        .then(data => setAdmin(data.admin))
-    },[user.email])
+            .then(res => res.json())
+            .then(data => setAdmin(data.admin))
+    }, [user.email])
 
+    ///// log out function 
     const logOut = () => {
         setIsLoading(true);
         signOut(auth)
@@ -115,20 +121,21 @@ const useFirebase = () => {
 
     }
 
-    // save user
-    const saveUser = (email, displayName, method) =>{
-        const user = {email, displayName};
+    // save user while registraton to the database
+    const saveUser = (email, displayName, method) => {
+        const user = { email, displayName };
         // fetch('http://localhost:5000/users', {
         fetch('https://aqueous-mountain-11815.herokuapp.com/users', {
-            method:method,
-            headers:{
-                'content-type':'application/json'
+            method: method,
+            headers: {
+                'content-type': 'application/json'
             },
-            body:JSON.stringify(user)
+            body: JSON.stringify(user)
         })
-        .then()
+            .then()
     }
 
+    //////// returning all function to the context
     return {
         user,
         admin,
