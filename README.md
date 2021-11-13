@@ -14,6 +14,6 @@ Server site Link [server](https://aqueous-mountain-11815.herokuapp.com/).
 => Admin can make any user admin.
 
 ## Bugs
-=>every Status radio option changes on single option change `but` it `works properly` on Backend server
-=>After update status reload require.
+=>every Status radio option changes on single option change `but` it `works properly` on Backend server\
+=>After update status reload require.\
 =>On reload dashboard redirect to the home 
