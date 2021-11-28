@@ -4,6 +4,7 @@ import { Button, CircularProgress, Table, TableBody, TableCell, TableContainer, 
 import Paper from '@mui/material/Paper';
 import { typography } from '@mui/system';
 import ConfirmDialog from '../confirmDialog/ConfirmDialog';
+import DeleteNotification from '../DeleeteNotification/DeleteNotification';
 
 
 const MyOrders = () => {
@@ -12,7 +13,7 @@ const MyOrders = () => {
     const { user } = useAuth();
     const [myOrders, setMyOrders] = useState([])
     const [confirmDelete, setConfirmDelete] = useState({ isOpen: false, title: '', subTitle: '' });
-
+    const [deleteNotification, setDeleteNotification] = useState({ isOpen: false, title: '', subTitle: '' })
     useEffect(() => {
         // const url = `http://localhost:5000/orderof?email=${user.email}`
         const url = `https://aqueous-mountain-11815.herokuapp.com/orderof?email=${user.email}`
@@ -28,7 +29,11 @@ const MyOrders = () => {
         // console.log('delete kore dei ', id)
         setConfirmDelete({
             ...confirmDelete,
-            isOpen:false
+            isOpen: false
+        })
+        setDeleteNotification({
+            ...deleteNotification,
+            isOpen: false
         })
         // const proceed = window.confirm('Are you sure, you want to delete this order ?????');
         // if (proceed) {
@@ -42,7 +47,14 @@ const MyOrders = () => {
             .then(data => {
                 // console.log(data)
                 if (data.deletedCount) {
-                    alert("successfully deleted")
+                    // alert("successfully deleted")
+                    setDeleteNotification(
+                        {
+                            isOpen: true,
+                            title: 'Done',
+                            subTitle: "Order succssfully deleted",
+                        }
+                    )
                     const remaining = myOrders.filter(ord => ord._id !== id);
                     setMyOrders(remaining);
                 }
@@ -100,6 +112,14 @@ const MyOrders = () => {
                 confirmDelete={confirmDelete}
                 setConfirmDelete={setConfirmDelete}
             ></ConfirmDialog>
+            <DeleteNotification
+                deleteNotification={deleteNotification}
+                setDeleteNotification={setDeleteNotification}
+            ></DeleteNotification>
+            {/* <DeleteNotification>
+                deleteNotification={deleteNotification}
+                setDeleteNotification={setDeleteNotification}
+            ></DeleteNotification> */}
         </div>
     );
 };

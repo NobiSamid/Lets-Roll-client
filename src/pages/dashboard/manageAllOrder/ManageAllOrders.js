@@ -1,6 +1,8 @@
 import { Button, CircularProgress, FormControlLabel, Radio, RadioGroup, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import Paper from '@mui/material/Paper';
+import ConfirmDialog from '../confirmDialog/ConfirmDialog';
+import DeleteNotification from '../DeleeteNotification/DeleteNotification';
 
 const ManageAllOrders = () => {
 
@@ -8,6 +10,9 @@ const ManageAllOrders = () => {
     const [allOrders, setAllOrders] = useState([]);
     const [status, setStatus] = useState('pending');
     const [updatedOrder, setUpdatedOrder] = useState({});
+    const [confirmDelete, setConfirmDelete] = useState({ isOpen: false, title: '', subTitle: '' });
+    const [deleteNotification, setDeleteNotification] = useState({ isOpen: false, title: '', subTitle: '' })
+
 
     // console.log(status);
 
@@ -23,24 +28,39 @@ const ManageAllOrders = () => {
     ////////////////////////////////////// Delete Order from database function
     const handleDeleteOrder = (id) => {
         // console.log("hello there you wanna delete", id);
-        const proceed = window.confirm('Are you sure, you want to delete this order ?');
-        if (proceed) {
-            // console.log('delete kore dei eta?', id);
-            // const url = `http://localhost:5000/orders/${id}`;
-            const url = `https://aqueous-mountain-11815.herokuapp.com/orders/${id}`;
-            fetch(url, {
-                method: 'DELETE'
+        // const proceed = window.confirm('Are you sure, you want to delete this order ?');
+        setConfirmDelete({
+            ...confirmDelete,
+            isOpen: false
+        })
+        setDeleteNotification({
+            ...deleteNotification,
+            isOpen: false
+        })
+        // if (proceed) {
+        // console.log('delete kore dei eta?', id);
+        // const url = `http://localhost:5000/orders/${id}`;
+        const url = `https://aqueous-mountain-11815.herokuapp.com/orders/${id}`;
+        fetch(url, {
+            method: 'DELETE'
+        })
+            .then(res => res.json())
+            .then(data => {
+                // console.log(data)
+                if (data.deletedCount) {
+                    setDeleteNotification(
+                        {
+                            isOpen: true,
+                            title: 'Done',
+                            subTitle: "Order succssfully deleted",
+                        }
+                    )
+                    // alert("successfully deleted")
+                    const remaining = allOrders.filter(ord => ord._id !== id);
+                    setAllOrders(remaining);
+                }
             })
-                .then(res => res.json())
-                .then(data => {
-                    // console.log(data)
-                    if (data.deletedCount) {
-                        alert("successfully deleted")
-                        const remaining = allOrders.filter(ord => ord._id !== id);
-                        setAllOrders(remaining);
-                    }
-                })
-        }
+        // }
     }
 
 
@@ -106,9 +126,18 @@ const ManageAllOrders = () => {
                                 <TableCell align="left">{row?.status}</TableCell>
 
                                 {/* Delete order firing button */}
-                                <TableCell align="left"><Button onClick={() => handleDeleteOrder(row._id)}>Delete</Button></TableCell>
+                                <TableCell align="left"><Button onClick={() => {
+                                    setConfirmDelete(
+                                        {
+                                            isOpen: true,
+                                            title: 'Are you sure to delete this order?',
+                                            subTitle: "You can't undo this operation",
+                                            onConfirm: () => { handleDeleteOrder(row._id) }
+                                        }
+                                    )
+                                }}>Delete</Button></TableCell>
 
-                                 {/* Update status changing radio button */}
+                                {/* Update status changing radio button */}
                                 <TableCell align="left">
                                     <RadioGroup value={status} onChange={(e) => setStatus(e.target.value)}>
                                         <FormControlLabel value="pending" control={<Radio />} label="Pending" />
@@ -124,6 +153,14 @@ const ManageAllOrders = () => {
                     </TableBody>
                 </Table>
             </TableContainer>}
+            <ConfirmDialog
+                confirmDelete={confirmDelete}
+                setConfirmDelete={setConfirmDelete}
+            ></ConfirmDialog>
+            <DeleteNotification
+                deleteNotification={deleteNotification}
+                setDeleteNotification={setDeleteNotification}
+            ></DeleteNotification>
         </div>
     );
 };
